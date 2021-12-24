@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class carting extends AppCompatActivity {
-    dataHelper dbHelper;
+    dataHelper dbHelper,f;
     private RecyclerView listBarangCart;
     private RecyclerView.Adapter adapter;
     public TextView hargaTotalText;
