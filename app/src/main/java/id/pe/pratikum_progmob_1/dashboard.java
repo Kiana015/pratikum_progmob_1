@@ -29,7 +29,6 @@ public class dashboard extends AppCompatActivity {
         SQLiteDatabase dbread = db_helper.getReadableDatabase();
         SQLiteDatabase db = db_helper.getWritableDatabase();
         Cursor checkItemData = dbread.rawQuery("select*from alatTulis", null);
-
         if(checkItemData.getCount() == 0)
         {
             db.execSQL("INSERT INTO alatTulis VALUES(1,'Stabillo Pencil 2B',2000.00,'pcs',"+String.valueOf(R.mipmap.pensil)+","+String.valueOf(R.drawable.pensil)+")");

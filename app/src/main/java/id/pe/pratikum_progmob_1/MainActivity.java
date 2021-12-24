@@ -123,25 +123,19 @@ public class MainActivity extends AppCompatActivity {
                     {
                         getId = getId+1;
                     }
-                    dbWrite.execSQL("insert into user (id, nama, alamat, jk, hobi, interest, username, password, statusAccount) values("+getId+",'"+name.getText().toString()+"','"+address.getText().toString()+"','"+selected_jk.getText().toString()+"','"+hobby+"',"+progressChangedValue[0]+",'"+username.getText().toString()+"','"+password.getText().toString()+"',1)");
                     //db.daftarAkun(name.getText().toString(), address.getText().toString(), selected_jk.getText().toString(), hobby, progressChangedValue[0], username.getText().toString(), password.getText().toString());
                     //Cursor id = db.geUserId(username.getText().toString(), password.getText().toString());
                     Cursor id = dbRead.rawQuery("select * from user where username = '"+username.getText().toString()+"' and password = '"+password.getText().toString()+"'",null);
                     if(id.getCount() == 0)
                     {
-                        Toast.makeText(MainActivity.this, "Tidak ada Data", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(id.getCount() == 1)
-                    {
-
-                        id.moveToFirst();
-                        spm.saveSPInt(getBaseContext(),spm.SP_ID, Integer.parseInt(id.getString(id.getColumnIndexOrThrow("id"))));
+                        dbWrite.execSQL("insert into user (id, nama, alamat, jk, hobi, interest, username, password, statusAccount) values("+getId+",'"+name.getText().toString()+"','"+address.getText().toString()+"','"+selected_jk.getText().toString()+"','"+hobby+"',"+progressChangedValue[0]+",'"+username.getText().toString()+"','"+password.getText().toString()+"',1)");
+                        spm.saveSPInt(getBaseContext(),spm.SP_ID, getId);
                         //Toast.makeText(MainActivity.this, "Ada Data dengan ID "+spm.getSPId(getBaseContext()), Toast.LENGTH_SHORT).show();
                         startActivity(mainMenu);
                     }
                     else
                     {
-                        Toast.makeText(MainActivity.this, "Tidak Bisa Login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Username sudah ada. silahkan gunakan username lain", Toast.LENGTH_SHORT).show();
                     }
 
                     /*mainMenu.putExtra("session_id",session_id);
